@@ -14,7 +14,7 @@ To get started with YueV1, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/YueV1.git
+   git clone https://github.com/ruihq/YueV1.git
    ```
 
 2. Install dependencies:
