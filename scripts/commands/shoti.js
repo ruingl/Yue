@@ -9,6 +9,7 @@ module.exports = {
     description: "Watch shoti video 📸",
     usage: ":shoti",
     author: "XyryllPanget",
+    // Redesign by RUI
   },
 
   run: async function ({ api, event, message }) {
@@ -20,7 +21,7 @@ module.exports = {
     api.sendMessage(`📸 𝗦𝗵𝗼𝘁𝗶:
 
 You have successfully purchased a shoti video for ${xycost}💵!
-Please wait for the video..`, event.messageID, event.threadID);
+Please wait for the video..`, event.threadID, event.messageID);
 
     try {
       const apiUrl = "https://shoti-api.libyzxy0.repl.co/api/get-shoti?apikey=shoti-1hbasgc1b4shff94ifo";
@@ -57,7 +58,7 @@ Please wait for the video..`, event.messageID, event.threadID);
       console.error(error);
       api.sendMessage(`📸 𝗦𝗵𝗼𝘁𝗶:
 
-Oops! An error occurred while fetching the video.`, event.messageID, event.threadID);
+Oops! An error occurred while fetching the video.`, event.threadID, event.messageID);
     }
   },
 };
