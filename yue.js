@@ -3,6 +3,7 @@ const path = require("path");
 const login = require("fca-unofficial");
 const axios = require("axios");
 const express = require("express");
+const chalk = require('chalk');
 
 const PREFIX = ":";
 const app = express();
@@ -74,7 +75,10 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(chalk.grey("Owned by Rui"))
+    console.log(chalk.green("[YueV1]: Open ✅"));
+    console.log(chalk.green("[KeepAlive]: Open ✅"));
+    console.log(chalk.red("[Login]: Login using cookie array."));
 });
 
 module.exports = {
