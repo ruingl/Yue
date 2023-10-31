@@ -1,45 +1,44 @@
-const fs = require("fs");
-const axios = require("axios");
+const fs = require('fs');
+const path = require('path');
+const { createPaste } = require('pastebin-js');
 
 module.exports = {
   config: {
-    name: "yue-cmd",
-    description: "Install a new command.",
-    usage: ":yue-cmd install {code or Pastebin URL} {commandName}.js",
+    name: 'pastebin',
+    usage: ':pastebin <filename>',
+    description: 'Upload files to Pastebin and send the link',
     role: 1,
-    author: "Rui",
-    license: "ISC"
+    author: 'SANDIP',
   },
 
   run: async function ({ api, event, args }) {
-    if (args.length < 4 || args[0] !== "install") {
-      api.sendMessage("Invalid command usage. Please use ':yue-cmd install {code or Pastebin URL} {commandName}.js'.", event.threadID);
-      return;
+    const fileName = args[0];
+    const filePathWithoutExtension = path.join(__dirname, '..', 'commands', fileName);
+    const filePathWithExtension = path.join(__dirname, '..', 'commands', fileName + '.js');
+
+    if (!fs.existsSync(filePathWithoutExtension) && !fs.existsSync(filePathWithExtension)) {
+      return api.sendMessage('Error...', event.threadID);
     }
 
-    const [, , codeOrUrl, commandFileName] = args.slice(0, 4);
-    let code;
+    const filePath = fs.existsSync(filePathWithoutExtension) ? filePathWithoutExtension : filePathWithExtension;
 
-    if (codeOrUrl.startsWith("http")) {
+    fs.readFile(filePath, 'utf8', async (err, data) => {
+      if (err) throw err;
+
       try {
-        const response = await axios.get(codeOrUrl);
-        code = response.data;
+        const pasteURL = await createPaste({
+          text: data,
+          title: fileName,
+          format: null,
+          privacy: 1,
+          expiration: 'N',
+        });
+
+        api.sendMessage(`Uploaded!\n\n${pasteURL}`, event.threadID);
       } catch (error) {
         console.error(error);
-        api.sendMessage("Error fetching code from the provided URL.", event.threadID);
-        return;
+        api.sendMessage('Error uploading to Pastebin.', event.threadID);
       }
-    } else {
-      code = codeOrUrl;
-    }
-
-    const commandPath = `${commandFileName}.js`;
-    try {
-      fs.writeFileSync(commandPath, code);
-      api.sendMessage(`Command '${commandFileName}' has been installed successfully!`, event.threadID);
-    } catch (error) {
-      console.error(error);
-      api.sendMessage("Error installing the command.", event.threadID);
-    }
+    });
   },
 };
