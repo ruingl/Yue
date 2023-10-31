@@ -1,3 +1,5 @@
 {pkgs}: {
-  deps = [ ];
+  deps = [
+    pkgs.nodejs-16_x
+   ];
 }
