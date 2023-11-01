@@ -1,3 +1,10 @@
+/*
+    @author: Rui
+    @message MADE BY RUI
+    @version: 1.0.0
+    @date: IDK
+*/
+
 const fs = require("fs");
 const path = require("path");
 const login = require("fca-unofficial");
@@ -39,6 +46,34 @@ login({ appState: loadAppState() }, (err, api) => {
             console.error("Error occurred while processing event:", err);
             return;
         }
+// Liane : new func add
+        const react = (emoji) => {
+  api.setMessageReaction(emoji, event.messageID, () => {}, true);
+};
+
+const reply = (msg) => {
+  api.sendMessage(msg, event.threadID, event.messageID);
+};
+
+const add = (uid) => {
+  api.addUserToGroup(uid, event.threadID);
+};
+
+const kick = (uid) => {
+  api.removeUserFromGroup(uid, event.threadID);
+};
+
+const send = (msg) => {
+  api.sendMessage(msg, event.threadID);
+};
+
+const box = {
+  react: react,
+  reply: reply,
+  add: add,
+  kick: kick,
+  send: send
+};
 
         try {
             if (event.body && event.body.toLowerCase() === "prefix") {
@@ -47,7 +82,7 @@ login({ appState: loadAppState() }, (err, api) => {
                 const [command, ...args] = event.body.slice(PREFIX.length).trim().split(" ");
 
                 if (commands[command]) {
-                    commands[command].run({ api, event, args });
+                    commands[command].run({ api, event, args, box });
                 } else {
                     api.sendMessage("Invalid command.", event.threadID, event.messageID);
                 }
@@ -69,16 +104,35 @@ function loadAppState() {
     }
 }
 
+// Website Content
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
-    res.send("Yue is running!");
+    // Handle requests for the Home page
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.get("/about", (req, res) => {
+    // Handle requests for the About page
+    res.sendFile(path.join(__dirname, "public", "about.html"));
+});
+
+app.get("/github", (req, res) => {
+    // Handle requests for the Github page
+    res.sendFile(path.join(__dirname, "public", "github.html"));
+});
+
+app.get("/stats", (req, res) => {
+    // Handle requests for the Stats page
+    res.sendFile(path.join(__dirname, "public", "stats.html"));
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(chalk.grey("Owned by Rui"))
-    console.log(chalk.green("[YueV1]: Open ✅"));
-    console.log(chalk.green("[KeepAlive]: Open ✅"));
-    console.log(chalk.red("[Login]: Login using cookie array."));
+    console.log(chalk.grey("yuev1 - (1.0.0)"))
+    console.log(chalk.green("[fca]: Logging in"));
+    console.log(chalk.green("[express]: Open on PORT 3000"));
+    console.log("");
 });
 
 module.exports = {
