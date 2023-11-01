@@ -58,6 +58,9 @@ Example:
 :help
 ```
 
+## box.?? docs
+<a href="box-function.md">DOCUMENTATION HERE</a>
+
 ## Command Installer
 
 To install a new command, use the `yue-cmd install` command:
