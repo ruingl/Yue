@@ -6,7 +6,6 @@ module.exports = {
     description: "Displays a list of admins or manages admins.",
     usage: ":admin [add/remove/list] [userID]",
     author: "Rui",
-    role: 0, // Set the role to 0 for everyone to use this command
   },
 
   run: async ({ api, event, args, box }) => {
