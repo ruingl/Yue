@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "yue.js",
   "scripts": {
-    "start": "npm i && node yue.js"
+    "start": "node yue.js"
   },
   "keywords": [],
   "author": "Rui and Liane",
