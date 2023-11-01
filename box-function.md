@@ -39,3 +39,5 @@ box.send('Hello, World!');
 ```
 
 These functions provide basic functionality for interacting with messages, reactions, and group chat management. Use them as building blocks to create more complex behaviors for your bot
+
+### Credits to Liane and Rui. please dont remove creds
