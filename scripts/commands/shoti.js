@@ -1,5 +1,4 @@
 const axios = require("axios");
-const request = require("request");
 const path = require("path");
 const fs = require("fs");
 
@@ -16,7 +15,7 @@ module.exports = {
     const xycost = 0; // Setting xycost to 0
     const user = event.senderID;
     // Deduct the cost of using the command
-    // Code to deduct money from user goes here if needed
+    // Code to deduct money from the user goes here if needed
 
     api.sendMessage(`📸 𝗦𝗵𝗼𝘁𝗶:
 
@@ -24,7 +23,17 @@ You have successfully purchased a shoti video for ${xycost}💵!
 Please wait for the video..`, event.threadID, event.messageID);
 
     try {
-      const apiUrl = "https://api--v1.shoti.vercel.app/api/v1/get?apikey=shoti-1hea9d5pm9rlq7urifo";
+      let apiUrl = "https://api--v1-shoti.vercel.app/api/v1/get";
+
+      // Make a POST request to get the video URL
+      let { data } = await axios.post(apiUrl, {
+        apikey: "$shoti-1hea9d5pm9rlq7urifo",
+      });
+
+      console.log("API Response:", data); // Log the API response for inspection
+
+      const videoUrl = data.data.url; // Extract video URL from the response
+
       const downloadDirectory = path.join(__dirname, "cache");
       const downloadPath = path.join(downloadDirectory, "video.mp4");
 
@@ -33,26 +42,20 @@ Please wait for the video..`, event.threadID, event.messageID);
         fs.mkdirSync(downloadDirectory, { recursive: true });
       }
 
-      const response = await axios.get(apiUrl);
-      const videoData = response.data.data;
-
-      if (!videoData || !videoData.play) {
-        console.error("Invalid API response format:", response.data);
-        throw new Error("Invalid API response format.");
-      }
-
-      const videoUrl = videoData.play; // Use the play URL from the API response
+      const response = await axios.get(videoUrl, { responseType: "stream" });
       const file = fs.createWriteStream(downloadPath);
-      const requestStream = request(videoUrl);
 
-      requestStream.pipe(file);
+      response.data.pipe(file);
+
       file.on("finish", () => {
-        api.sendMessage(
-          {
-            attachment: fs.createReadStream(downloadPath),
-          },
-          event.threadID
-        );
+        file.close(() => {
+          api.sendMessage(
+            {
+              attachment: fs.createReadStream(downloadPath),
+            },
+            event.threadID
+          );
+        });
       });
     } catch (error) {
       console.error(error);
