@@ -24,7 +24,7 @@ You have successfully purchased a shoti video for ${xycost}💵!
 Please wait for the video..`, event.threadID, event.messageID);
 
     try {
-      const apiUrl = "https://shoti-api.libyzxy0.repl.co/api/get-shoti?apikey=shoti-1hbasgc1b4shff94ifo";
+      const apiUrl = "https://api--v1.shoti.vercel.app/api/v1/get?apikey=shoti-1hea9d5pm9rlq7urifo";
       const downloadDirectory = path.join(__dirname, "cache");
       const downloadPath = path.join(downloadDirectory, "video.mp4");
 
