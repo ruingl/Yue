@@ -11,6 +11,7 @@ const login = require("fca-unofficial");
 const axios = require("axios");
 const express = require("express");
 const chalk = require('chalk');
+const gradient = require('gradient-string');
 
 const PREFIX = ":";
 const app = express();
@@ -111,12 +112,6 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(chalk.grey("yuev1 - (1.0.0)"))
-    console.log(chalk.green("[fca]: Logging in"));
-    console.log(chalk.green("[express]: Open on PORT 3000"));
+    console.log(gradient.rainbow("> yuev1 - (1.0.0)"))
     console.log("");
 });
-
-module.exports = {
-    author: "Rui"
-};
