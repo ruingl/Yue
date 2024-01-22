@@ -7,7 +7,6 @@ module.exports = {
         description: "Shows a list of available commands.",
         usage: ":help",
         author: "Rui and Lia", // + liaaa
-        license: "ISC"
     },
     run: ({ api, event }) => {
         const { body } = event;
@@ -31,15 +30,12 @@ module.exports = {
             const reqCmd = require(`./${cmdName}.js`);
             const { name, description, usage, author, license, version } = reqCmd.config;
             api.sendMessage(`➤【 ${name || "Guide:"} 】
-📝 Created by: ${author || "Anonymous"}
+📝 Created by: ${author || "No author provided."}
 💻 Version: ${version || "1.0"}
 🔎 Description:
-${description || "Its a mystery"}
+${description || "No description provided."}
 💡 Usage: 
-${usage || "Guess it"}
-
-📍 License:
-${license || "No text provided"}`, event.threadID);
+${usage || "No usage provided."}
         }
     }
 };
