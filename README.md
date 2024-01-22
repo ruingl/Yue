@@ -38,8 +38,8 @@ You can visit the documentation <a href="DOCS.md">here.</a>
 
 This project utilizes the following APIs:
 
-- [FCA-Unofficial](https://github.com/VangBanLaNhat/fca-unofficial) - FCA API for Facebook Messenger.
-- [Herc.ai](https://github.com/Bes-js/herc.ai) - AI API for natural language processing.
+- [fca-unofficial](https://github.com/VangBanLaNhat/fca-unofficial) - Facebook Chatting API for Facebook Messenger.
+- [herc.ai](https://github.com/Bes-js/herc.ai) - GPT3 API for AI command
 
 A special thanks to the creators and contributors of these APIs for their valuable contributions to this project.
 
