@@ -118,13 +118,13 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   // Logging for 'yuev1 - (1.0.0)'
-  console.log(gradient.rainbow("> yuev1 - (1.0.0)"));
+  console.log(gradient.retro("> yuev1 - (1.0.0) 🙀 <"));
+
+  console.log(gradient.retro("> by ruingl ♥️  <"));
 
   // ... (rest of your logging)
   console.log("");
 
-  // Log the loaded commands
-  console.log(gradient.rainbow("Loaded Commands:"));
   loadCommands();
 
   // Additional console.log(""); for separation
