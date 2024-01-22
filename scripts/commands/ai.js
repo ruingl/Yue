@@ -14,7 +14,7 @@ module.exports = {
         // Check if there are any arguments
         if (args) {
             try {
-                const response = await axios.get(`https://hercai.onrender.com/v2/hercai?question=${encodeURIComponent(args)}`);
+                const response = await axios.get(`https://hercai.onrender.com/v3/hercai?question=${encodeURIComponent(args)}`);
                 const aiResponse = response.data.reply;
                 api.sendMessage(aiResponse, event.threadID, event.messageID);
             } catch (error) {
