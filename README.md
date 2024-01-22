@@ -12,11 +12,13 @@ Yue is a chatbot engine for Messenger, powered by Node.js and integrated with va
 To get started with Yue, follow these steps:
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/ruihq/Yue.git
    ```
 
 2. Change dir to Yue
+
    ```bash
    cd Yue
    ```
@@ -27,7 +29,9 @@ To get started with Yue, follow these steps:
    ```bash
    npm run start
    ```
+
 ## Documentation:
+
 You can visit the documentation <a href="DOCS.md">here.</a>
 
 ## Credits

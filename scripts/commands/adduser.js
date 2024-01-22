@@ -27,7 +27,10 @@ module.exports = {
     try {
       api.addUserToGroup(uid, event.threadID);
     } catch (err) {
-      api.sendMessage(`An error occurred while adding the participant.`, event.threadID);
-      } 
+      api.sendMessage(
+        `An error occurred while adding the participant.`,
+        event.threadID,
+      );
     }
-  };
+  },
+};

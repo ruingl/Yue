@@ -10,10 +10,10 @@ module.exports = {
 
   run: async ({ api, event, args, box }) => {
     const [action, userID] = args;
-    const adminList = JSON.parse(fs.readFileSync('admin.json', 'utf8')).admins;
+    const adminList = JSON.parse(fs.readFileSync("admin.json", "utf8")).admins;
 
-    if (!adminList.some(admin => admin.id === event.senderID)) {
-      box.reply('You do not have permission to use this command.');
+    if (!adminList.some((admin) => admin.id === event.senderID)) {
+      box.reply("You do not have permission to use this command.");
       return;
     }
 
@@ -26,12 +26,12 @@ module.exports = {
     } else {
       box.reply("Invalid usage. Please use :admin [add/remove/list] [userID]");
     }
-  }
+  },
 };
 
 function loadAdmins() {
   try {
-    const adminData = fs.readFileSync('admin.json', 'utf8');
+    const adminData = fs.readFileSync("admin.json", "utf8");
     const admins = JSON.parse(adminData).admins;
     return admins;
   } catch (error) {
@@ -42,13 +42,13 @@ function loadAdmins() {
 
 function saveAdmins(admins) {
   const data = { admins: admins };
-  fs.writeFileSync('admin.json', JSON.stringify(data, null, 2));
+  fs.writeFileSync("admin.json", JSON.stringify(data, null, 2));
 }
 
 function addAdmin(api, event, userID, box) {
   let admins = loadAdmins();
 
-  if (!admins.some(admin => admin.id === userID)) {
+  if (!admins.some((admin) => admin.id === userID)) {
     admins.push({ id: userID, name: `Admin${admins.length + 1}` });
     saveAdmins(admins);
     box.reply(`Admin with ID ${userID} has been added.`);
@@ -60,7 +60,7 @@ function addAdmin(api, event, userID, box) {
 function removeAdmin(api, event, userID, box) {
   let admins = loadAdmins();
 
-  const index = admins.findIndex(admin => admin.id === userID);
+  const index = admins.findIndex((admin) => admin.id === userID);
   if (index !== -1) {
     const removedAdmin = admins.splice(index, 1)[0];
     saveAdmins(admins);
@@ -73,7 +73,9 @@ function removeAdmin(api, event, userID, box) {
 function listAdmins(api, event, box) {
   let admins = loadAdmins();
   if (admins.length > 0) {
-    const adminList = admins.map(admin => `${admin.name} (ID: ${admin.id})`).join("\n");
+    const adminList = admins
+      .map((admin) => `${admin.name} (ID: ${admin.id})`)
+      .join("\n");
     box.reply(`List of admins:\n${adminList}`);
   } else {
     box.reply("No admins found.");
