@@ -4,6 +4,7 @@
   "main": "yue.js",
   "scripts": {
     "start": "node yue.js"
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "Rui and Liane",
