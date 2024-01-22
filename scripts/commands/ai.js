@@ -4,7 +4,8 @@ module.exports = {
     config: {
         name: "ai",
         description: "Interact with an AI to get responses to your questions.",
-        usage: ":ai <question>"
+        usage: ":ai <question>",
+        author: "Rui"
     },
 
     run: async (context) => {
