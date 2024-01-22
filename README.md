@@ -1,16 +1,15 @@
 # YueV1
 
-YueV1 is a versatile and customizable chatbot engine for Facebook Messenger, powered by Node.js and integrated with various APIs for enhanced functionality.
+Yue is a chatbot engine for Messenger, powered by Node.js and integrated with various APIs for enhanced functionality.
 
 ## Features
 
 - **Command System:** Easily create, manage, and execute commands with a flexible command system.
 - **API Integration:** Utilizes APIs for AI, messaging, and more to enhance its capabilities.
-- **Command Installer:** Install custom commands on-the-fly using `yue-cmd install` command.
 
 ## Getting Started
 
-To get started with YueV1, follow these steps:
+To get started with Yue, follow these steps:
 
 1. Clone the repository:
    ```bash
@@ -40,13 +39,13 @@ Example:
 :ai How does photosynthesis work?
 ```
 
-### `:prefix`
+### `prefix`
 
 Get the bot's current command prefix.
 
 Example:
 ```
-:prefix
+prefix
 ```
 
 ### `:help`
@@ -59,20 +58,7 @@ Example:
 ```
 
 ## box.?? docs
-<a href="box-function.md">DOCUMENTATION HERE</a>
-
-## Command Installer
-
-To install a new command, use the `yue-cmd install` command:
-
-```
-:yue-cmd install [code or Pastebin URL] [commandName].js
-```
-
-Example:
-```
-:yue-cmd install https://pastebin.com/raw/kM89du87 test.js
-```
+<a href="box-function.md">Docs for BoxFunc</a>
 
 ## Credits
 
