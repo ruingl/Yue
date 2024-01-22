@@ -1,4 +1,4 @@
-# YueV1
+# Yue
 
 Yue is a chatbot engine for Messenger, powered by Node.js and integrated with various APIs for enhanced functionality.
 
