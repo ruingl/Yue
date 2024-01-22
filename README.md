@@ -13,12 +13,12 @@ To get started with Yue, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/ruihq/YueV1.git
+   git clone https://github.com/ruihq/Yue.git
    ```
 
-2. Install dependencies:
+2. Change dir to Yue
    ```bash
-   npm install
+   cd Yue
    ```
 
 3. Set up your configurations in `config.json`.
