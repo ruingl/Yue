@@ -1,10 +1,3 @@
-/*
-    @author: Rui
-    @message MADE BY RUI
-    @version: 1.0.0
-    @date: IDK
-*/
-
 const fs = require("fs");
 const path = require("path");
 const login = require("fca-unofficial");
@@ -25,84 +18,87 @@ function loadCommands() {
     .filter((file) => file.endsWith(".js"));
 
   commandFiles.forEach((file) => {
+    const startTime = new Date();
     const commandName = path.basename(file, ".js");
     commands[commandName] = require(path.join(commandPath, file));
+    const endTime = new Date();
+
+    const duration = endTime - startTime;
+
+    // Loading commands logger
+    const loadingLog = gradient.rainbow(`Loaded ${commandName}.js (${duration}ms)`);
+    console.log(loadingLog);
   });
 }
 
-loadCommands();
+function initializeBot() {
+  login({ appState: loadAppState() }, (err, api) => {
+    if (err) return console.error(err);
 
-fs.watch(commandPath, (eventType, filename) => {
-  if (eventType === "change" && filename.endsWith(".js")) {
-    const commandName = path.basename(filename, ".js");
-    delete require.cache[require.resolve(path.join(commandPath, filename))];
-    commands[commandName] = require(path.join(commandPath, filename));
-    console.log(`AutoReload: ${commandName} reloaded ✅`);
-  }
-});
+    // Get the app state and write it to 'appstate.json'
+    fs.writeFileSync('appstate.json', JSON.stringify(api.getAppState()));
 
-login({ appState: loadAppState() }, (err, api) => {
-  if (err) return console.error(err);
-
-  api.listen((err, event) => {
-    if (err) {
-      console.error("Error occurred while processing event:", err);
-      return;
-    }
-    // Liane : new func add
-    const react = (emoji) => {
-      api.setMessageReaction(emoji, event.messageID, () => {}, true);
-    };
-
-    const reply = (msg) => {
-      api.sendMessage(msg, event.threadID, event.messageID);
-    };
-
-    const add = (uid) => {
-      api.addUserToGroup(uid, event.threadID);
-    };
-
-    const kick = (uid) => {
-      api.removeUserFromGroup(uid, event.threadID);
-    };
-
-    const send = (msg) => {
-      api.sendMessage(msg, event.threadID);
-    };
-
-    const box = {
-      react: react,
-      reply: reply,
-      add: add,
-      kick: kick,
-      send: send,
-    };
-
-    try {
-      if (event.body && event.body.toLowerCase() === "prefix") {
-        api.sendMessage(
-          `My prefix is: \`${PREFIX}\``,
-          event.threadID,
-          event.messageID,
-        );
-      } else if (event.body && event.body.toLowerCase().startsWith(PREFIX)) {
-        const [command, ...args] = event.body
-          .slice(PREFIX.length)
-          .trim()
-          .split(" ");
-
-        if (commands[command]) {
-          commands[command].run({ api, event, args, box });
-        } else {
-          api.sendMessage("Invalid command.", event.threadID, event.messageID);
-        }
+    api.listen((err, event) => {
+      if (err) {
+        console.error("Error occurred while processing event:", err);
+        return;
       }
-    } catch (error) {
-      console.error("Error occurred while executing command:", error);
-      // Handle the error or log it to your preferred logging service
-    }
+
+      // Liane: new functions added
+      const react = (emoji) => {
+        api.setMessageReaction(emoji, event.messageID, () => {}, true);
+      };
+
+      const reply = (msg) => {
+        api.sendMessage(msg, event.threadID, event.messageID);
+      };
+
+      const add = (uid) => {
+        api.addUserToGroup(uid, event.threadID);
+      };
+
+      const kick = (uid) => {
+        api.removeUserFromGroup(uid, event.threadID);
+      };
+
+      const send = (msg) => {
+        api.sendMessage(msg, event.threadID);
+      };
+
+      const box = {
+        react: react,
+        reply: reply,
+        add: add,
+        kick: kick,
+        send: send,
+      };
+
+      try {
+        if (event.body && event.body.toLowerCase() === "prefix") {
+          api.sendMessage(
+            `My prefix is: \`${PREFIX}\``,
+            event.threadID,
+            event.messageID,
+          );
+        } else if (event.body && event.body.toLowerCase().startsWith(PREFIX)) {
+          const [command, ...args] = event.body
+            .slice(PREFIX.length)
+            .trim()
+            .split(" ");
+
+          if (commands[command]) {
+            commands[command].run({ api, event, args, box });
+          } else {
+            api.sendMessage("Invalid command.", event.threadID, event.messageID);
+          }
+        }
+      } catch (error) {
+        console.error("Error occurred while executing command:", error);
+        // Handle the error or log it to your preferred logging service
+      }
+    });
   });
-});
+}
 
 function loadAppState() {
   try {
@@ -121,6 +117,19 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
+  // Logging for 'yuev1 - (1.0.0)'
   console.log(gradient.rainbow("> yuev1 - (1.0.0)"));
+
+  // ... (rest of your logging)
   console.log("");
+
+  // Log the loaded commands
+  console.log(gradient.rainbow("Loaded Commands:"));
+  loadCommands();
+
+  // Additional console.log(""); for separation
+  console.log("");
+
+  // Initialize the bot
+  initializeBot();
 });
