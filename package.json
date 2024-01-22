@@ -17,7 +17,8 @@
     "node-fetch": "^3.2.6",
     "pastebin-js": "^1.0.6",
     "request": "^2.88.2",
-    "chalk": "4.1.2"
+    "chalk": "4.1.2",
+    "gradient-string": "2.0.2"
   },
   "description": "Messenger chatbot"
 }
