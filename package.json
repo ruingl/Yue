@@ -1,6 +1,6 @@
 {
   "name": "Yue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "yue.js",
   "scripts": {
     "start": "node yue.js",

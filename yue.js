@@ -26,7 +26,7 @@ function loadCommands() {
     const duration = endTime - startTime;
 
     // Loading commands logger
-    const loadingLog = gradient.rainbow(`Loaded ${commandName}.js (${duration}ms)`);
+    const loadingLog = gradient.rainbow(`⟩ Loaded ${commandName}.js (${duration}ms)`);
     console.log(loadingLog);
   });
 }
@@ -118,9 +118,9 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   // Logging for 'yuev1 - (1.0.0)'
-  console.log(gradient.retro("> yuev1 - (1.0.0) 🙀 <"));
+  console.log(gradient.retro("⟩ yuev1 - (1.0.1) 🙀"));
 
-  console.log(gradient.retro("> by ruingl ♥️  <"));
+  console.log(gradient.retro("⟩ by ruingl ♥️"));
 
   // ... (rest of your logging)
   console.log("");
