@@ -104,27 +104,9 @@ function loadAppState() {
     }
 }
 
-// Website Content
-app.use(express.static("public"));
-
 app.get("/", (req, res) => {
     // Handle requests for the Home page
-    res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
-app.get("/about", (req, res) => {
-    // Handle requests for the About page
-    res.sendFile(path.join(__dirname, "public", "about.html"));
-});
-
-app.get("/github", (req, res) => {
-    // Handle requests for the Github page
-    res.sendFile(path.join(__dirname, "public", "github.html"));
-});
-
-app.get("/stats", (req, res) => {
-    // Handle requests for the Stats page
-    res.sendFile(path.join(__dirname, "public", "stats.html"));
+    res.send("Website in construction 🏗️");
 });
 
 const PORT = process.env.PORT || 3000;
