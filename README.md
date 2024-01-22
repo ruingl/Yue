@@ -25,40 +25,10 @@ To get started with Yue, follow these steps:
 
 4. Run the bot:
    ```bash
-   npm start
+   npm run start
    ```
-
-## Command Documentation
-
-### `:ai [question]`
-
-Ask the chatbot a question, and it will generate a response using the AI API.
-
-Example:
-```
-:ai How does photosynthesis work?
-```
-
-### `prefix`
-
-Get the bot's current command prefix.
-
-Example:
-```
-prefix
-```
-
-### `:help`
-
-View a list of available commands and their descriptions.
-
-Example:
-```
-:help
-```
-
-## box.?? docs
-<a href="box-function.md">Docs for BoxFunc</a>
+## Documentation:
+You can visit the documentation <a href="DOCS.md">here.</a>
 
 ## Credits
 
@@ -71,4 +41,4 @@ A special thanks to the creators and contributors of these APIs for their valuab
 
 ## License
 
-This project is licensed under the ISC License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the Rui Custom License - see the [LICENSE.md](LICENSE.md) file for details.
