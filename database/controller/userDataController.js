@@ -9,10 +9,14 @@ const getUserInfoFromDB = async (userID) => {
     const user = await UserModel.findByPk(userID);
 
     if (user) {
-      console.log(chalk.green(`[ DATABASE ] : Fetched user info from DB: ${userID}`));
+      console.log(
+        chalk.green(`[ DATABASE ] : Fetched user info from DB: ${userID}`),
+      );
       return user.toJSON(); // Convert to plain object for better handling
     } else {
-      console.log(chalk.yellow(`[ DATABASE ] : User not found in DB: ${userID}`));
+      console.log(
+        chalk.yellow(`[ DATABASE ] : User not found in DB: ${userID}`),
+      );
       return null;
     }
   } catch (error) {

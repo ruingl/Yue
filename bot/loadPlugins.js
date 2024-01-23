@@ -1,10 +1,10 @@
 // bot/loadPlugins.js
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 function loadPlugins() {
-  const pluginsPath = path.join(__dirname, 'plugins');
+  const pluginsPath = path.join(__dirname, "plugins");
 
   // Read the plugins directory
   const plugins = fs.readdirSync(pluginsPath);
@@ -28,7 +28,7 @@ function verifyAndLoadPlugin(pluginPath) {
 
   // Use try-catch to handle errors during verification or loading
   try {
-    const plugin = require(path.join(pluginPath, 'scripts', 'loadPlugin'));
+    const plugin = require(path.join(pluginPath, "scripts", "loadPlugin"));
     plugin.load();
     console.log(`Plugin ${plugin.config.name} loaded successfully.`);
   } catch (error) {

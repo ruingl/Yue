@@ -5,12 +5,16 @@ const {
   addUserToDB,
   listUsers,
 } = require("../controller/userData");
-const { getThreadInfo } = require("../controller/threadsData");
+const {
+  getThreadInfoFromDB,
+  addThreadToDB,
+} = require("../controller/threadsData");
 
 module.exports = {
   addUserToDB,
   listUsers,
-  getThreadInfo,
+  getThreadInfoFromDB,
   getUserInfoFromDB,
+  addThreadToDB,
   // Add other exports as needed...
 };

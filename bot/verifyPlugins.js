@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const pluginsPath = path.join(__dirname, 'plugins');
+const pluginsPath = path.join(__dirname, "plugins");
 
 const verifyPlugins = () => {
   const pluginDirs = fs.readdirSync(pluginsPath);
@@ -9,9 +9,13 @@ const verifyPlugins = () => {
 
   pluginDirs.forEach((pluginName) => {
     const pluginPath = path.join(pluginsPath, pluginName);
-    const loadPluginPath = path.join(pluginPath, 'scripts', 'loadPlugin.js');
-    const handlePluginPath = path.join(pluginPath, 'scripts', 'handlePlugin.js');
-    const metadataPath = path.join(pluginPath, 'metadata.json');
+    const loadPluginPath = path.join(pluginPath, "scripts", "loadPlugin.js");
+    const handlePluginPath = path.join(
+      pluginPath,
+      "scripts",
+      "handlePlugin.js",
+    );
+    const metadataPath = path.join(pluginPath, "metadata.json");
 
     try {
       const metadata = require(metadataPath);

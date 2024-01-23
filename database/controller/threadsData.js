@@ -1,6 +1,7 @@
 const threadsDataController = require("./threadsDataController");
 
 module.exports = {
-  getThreadInfo: threadsDataController.getThreadInfo,
+  getThreadInfoFromDB: threadsDataController.getThreadInfoFromDB,
+  addThreadToDB: threadsDataController.addThreadToDB,
   // Add other exports as needed...
 };

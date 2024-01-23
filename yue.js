@@ -8,12 +8,13 @@ const gradient = require("gradient-string");
 const {
   addUserToDB,
   listUsers,
-  getThreadInfo,
+  getThreadInfoFromDB,
   getUserInfoFromDB,
+  addThreadToDB,
 } = require("./database/commands/index");
 
-const loadPlugins = require('./bot/loadPlugins');
-const startPlugins = require('./bot/startPlugins');
+const loadPlugins = require("./bot/loadPlugins");
+const startPlugins = require("./bot/startPlugins");
 
 const app = express();
 const commandPath = path.join(__dirname, "scripts", "commands");
@@ -95,7 +96,7 @@ function initializeBot() {
   login({ appState: loadAppState() }, (err, api) => {
     if (err) return console.error(err);
 
-    api.setOptions({listenEvents: true});
+    api.setOptions({ listenEvents: true });
 
     // Check for updates
     updateCheck();
@@ -113,6 +114,13 @@ function initializeBot() {
       if (!userExists) {
         // Use the addUserToDB command to add the user to the database
         addUserToDB(api, event.senderID);
+      }
+
+      const threadExists = await getThreadInfoFromDB(event.threadID);
+
+      if (!threadExists) {
+        // Manually add the thread information to the database
+        await addThreadToDB(api, event.threadID);
       }
 
       const box = {

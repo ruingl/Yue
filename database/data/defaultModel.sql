@@ -4,8 +4,8 @@ CREATE TABLE users (
     name TEXT,
     vanity TEXT,
     banned BOOLEAN DEFAULT 0,
-    settings JSON DEFAULT '{}',
-    data JSON DEFAULT '{}',
+    settings TEXT DEFAULT '{}',
+    data TEXT DEFAULT '{}',
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -16,12 +16,14 @@ CREATE TABLE threads (
     threadName TEXT,
     threadThemeID TEXT,
     emoji TEXT,
-    adminIDs JSON DEFAULT '[]',
+    adminIDs TEXT DEFAULT '[]',
     imageSrc TEXT,
     approvalMode BOOLEAN,
-    members JSON DEFAULT '[]',
+    members TEXT DEFAULT '[]',
     banned BOOLEAN DEFAULT 0,
-    settings JSON DEFAULT '{}',
-    data JSON DEFAULT '{}',
-    isGroup BOOLEAN
+    settings TEXT DEFAULT '{}',
+    data TEXT DEFAULT '{}',
+    isGroup BOOLEAN,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
