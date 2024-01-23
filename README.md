@@ -1,15 +1,14 @@
 # Yue
 
-Yue is a chatbot engine for Messenger, powered by Node.js and integrated with various APIs for enhanced functionality.
+Yue is a Node.js-powered chatbot engine for Messenger, offering a flexible command system and API integration for enhanced functionality.
 
-## Features
+## Key Features
 
-- **Command System:** Easily create, manage, and execute commands with a flexible command system.
-- **API Integration:** Utilizes APIs for AI, messaging, and more to enhance its capabilities.
+- **Command System:** Easily manage and execute commands with a versatile system.
+- **API Integration:** Harnesses various APIs, including AI and messaging, to enrich its capabilities.
+- **Database Support:** Seamlessly integrates with SQLite for efficient user and thread data management.
 
 ## Getting Started
-
-To get started with Yue, follow these steps:
 
 1. Clone the repository:
 
@@ -17,32 +16,33 @@ To get started with Yue, follow these steps:
    git clone https://github.com/ruihq/Yue.git
    ```
 
-2. Change dir to Yue
+2. Navigate to the Yue directory:
 
    ```bash
    cd Yue
    ```
 
-3. Set up your configurations in `config.json`.
+3. Configure your settings in `config.json`.
 
 4. Run the bot:
+
    ```bash
    npm run start
    ```
 
 ## Documentation:
 
-You can visit the documentation <a href="DOCS.md">here.</a>
+Refer to the [documentation](DOCS.md) for detailed information.
 
 ## Credits
 
-This project utilizes the following APIs:
+This project integrates the following APIs:
 
 - [fca-unofficial](https://github.com/VangBanLaNhat/fca-unofficial) - Facebook Chatting API for Facebook Messenger.
-- [herc.ai](https://github.com/Bes-js/herc.ai) - GPT3 API for AI command
+- [herc.ai](https://github.com/Bes-js/herc.ai) - GPT3 API for AI commands.
 
-A special thanks to the creators and contributors of these APIs for their valuable contributions to this project.
+Special thanks to the creators and contributors of these APIs for their valuable contributions.
 
 ## License
 
-This project is licensed under the Rui Custom License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the Rui Custom License. See the [LICENSE.md](LICENSE.md) file for details.
