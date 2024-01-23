@@ -23,8 +23,6 @@ To get started with Yue, follow these steps:
    cd Yue
    ```
 
-3. Set up your configurations in `config.json`.
-
 4. Run the bot:
    ```bash
    npm run start
