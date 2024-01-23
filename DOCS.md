@@ -1,4 +1,4 @@
-# Yue Version 1.0.0
+# Yue Docs v1.0.3
 
 Credits to Rui, Liane
 
@@ -8,6 +8,12 @@ Credits to Rui, Liane
   - [ai](#ai)
   - [prefix](#prefix)
   - [help](#help)
+
+- [Database Commands](#database-commands)
+  - [addUserToDB](#addusertodb)
+  - [listUsers](#listusers)
+  - [getThreadInfo](#getthreadinfo)
+  - [getUserInfo](#getuserinfo)
 
 - [Box Functions](#box-functions)
   - [box.react](#boxreact)
@@ -43,6 +49,40 @@ View a list of available commands and their descriptions.
   ```plaintext
   :help
   ```
+
+## Database Commands
+
+### 1. addUserToDB
+
+- `addUserToDB(api: object, userID: string): void` - Add a user to the SQLite database with the provided user ID.
+  - **Example usage:**
+    ```javascript
+    addUserToDB(api, "1234567890");
+    ```
+
+### 2. listUsers
+
+- `listUsers(api: object): void` - List users in the current SQLite database.
+  - **Example usage:**
+    ```javascript
+    listUsers(api);
+    ```
+
+### 3. getThreadInfo
+
+- `getThreadInfo(threadID: string): object | null` - Get information about a thread from the SQLite database.
+  - **Example usage:**
+    ```javascript
+    getThreadInfo("987654321");
+    ```
+
+### 4. getUserInfo
+
+- `getUserInfo(userID: string): object | null` - Get information about a user from the SQLite database.
+  - **Example usage:**
+    ```javascript
+    getUserInfo("1234567890");
+    ```
 
 ## Box Functions
 
