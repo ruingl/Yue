@@ -23,7 +23,7 @@ To get started with Yue, follow these steps:
    cd Yue
    ```
 
-4. Run the bot:
+3. Run the bot:
    ```bash
    npm run start
    ```

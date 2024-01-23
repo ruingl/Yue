@@ -5,7 +5,12 @@ const axios = require("axios");
 const express = require("express");
 const chalk = require("chalk");
 const gradient = require("gradient-string");
-const { addUserToDB, listUsers, getThreadInfo, getUserInfo } = require('./database/commands/index');
+const {
+  addUserToDB,
+  listUsers,
+  getThreadInfo,
+  getUserInfo,
+} = require("./database/commands/index");
 
 const app = express();
 const commandPath = path.join(__dirname, "scripts", "commands");

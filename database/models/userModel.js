@@ -27,7 +27,7 @@ UserModel.init(
   {
     sequelize,
     modelName: "user",
-  }
+  },
 );
 
 module.exports = UserModel;

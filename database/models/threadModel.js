@@ -39,7 +39,7 @@ ThreadModel.init(
   {
     sequelize,
     modelName: "thread",
-  }
+  },
 );
 
 module.exports = ThreadModel;

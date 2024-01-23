@@ -38,7 +38,9 @@ const listUsers = async () => {
     const users = await UserModel.findAll();
     console.log("[ DATABASE ] : List of users:");
     users.forEach((user) => {
-      console.log(`User ID: ${user.userID}, Name: ${user.name}, Vanity: ${user.vanity}`);
+      console.log(
+        `User ID: ${user.userID}, Name: ${user.name}, Vanity: ${user.vanity}`,
+      );
     });
   } catch (error) {
     console.error("Error listing users:", error);
