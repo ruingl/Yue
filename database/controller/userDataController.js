@@ -1,33 +1,48 @@
 // userDataController.js
 
 const UserModel = require("../models/userModel");
+const chalk = require("chalk");
 
-const getUserInfo = async (userID) => {
+const getUserInfoFromDB = async (userID) => {
   try {
+    // Fetch user information from the database
     const user = await UserModel.findByPk(userID);
-    return user ? user.toJSON() : null;
+
+    if (user) {
+      console.log(chalk.green(`[ DATABASE ] : Fetched user info from DB: ${userID}`));
+      return user.toJSON(); // Convert to plain object for better handling
+    } else {
+      console.log(chalk.yellow(`[ DATABASE ] : User not found in DB: ${userID}`));
+      return null;
+    }
   } catch (error) {
-    console.error("Error getting user info:", error);
+    console.error("Error fetching user info from the database:", error);
     return null;
   }
 };
 
 const addUserToDB = async (api, userID) => {
   try {
-    const userInfo = await api.getUserInfo(userID);
-    const vanity = userInfo[userID].vanity;
-    const name = userInfo[userID].name;
+    const userInfo = await api.getUserInfo([userID]); // Pass userID as an array
+    const user = userInfo[userID];
 
-    await UserModel.create({
-      userID: userID,
-      name: name,
-      vanity: vanity,
-      banned: false,
-      settings: {},
-      data: {},
-    });
+    if (user) {
+      const vanity = user.vanity;
+      const name = user.name;
 
-    console.log(chalk.green(`[ DATABASE ] : Added new user: ${userID}`));
+      await UserModel.create({
+        userID: userID,
+        name: name,
+        vanity: vanity,
+        banned: false,
+        settings: {},
+        data: {},
+      });
+
+      console.log(chalk.green(`[ DATABASE ] : Added new user: ${userID}`));
+    } else {
+      console.log(chalk.yellow(`[ DATABASE ] : User not found: ${userID}`));
+    }
   } catch (error) {
     console.error("Error adding user to the database:", error);
   }
@@ -50,7 +65,7 @@ const listUsers = async () => {
 // Other controller functions go here...
 
 module.exports = {
-  getUserInfo,
+  getUserInfoFromDB,
   addUserToDB,
   listUsers,
   // Add other exports as needed...

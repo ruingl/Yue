@@ -1,7 +1,7 @@
 // commands/index.js
 
 const {
-  getUserInfo,
+  getUserInfoFromDB,
   addUserToDB,
   listUsers,
 } = require("../controller/userData");
@@ -11,6 +11,6 @@ module.exports = {
   addUserToDB,
   listUsers,
   getThreadInfo,
-  getUserInfo,
+  getUserInfoFromDB,
   // Add other exports as needed...
 };

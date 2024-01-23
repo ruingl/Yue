@@ -9,8 +9,11 @@ const {
   addUserToDB,
   listUsers,
   getThreadInfo,
-  getUserInfo,
+  getUserInfoFromDB,
 } = require("./database/commands/index");
+
+const loadPlugins = require('./bot/loadPlugins');
+const startPlugins = require('./bot/startPlugins');
 
 const app = express();
 const commandPath = path.join(__dirname, "scripts", "commands");
@@ -22,6 +25,9 @@ const commands = {};
 // Load the version from version.json
 const versionPath = path.join(__dirname, "version.json");
 let version = loadVersion();
+
+loadPlugins();
+startPlugins();
 
 function loadCommands() {
   const commandFiles = fs
@@ -89,6 +95,8 @@ function initializeBot() {
   login({ appState: loadAppState() }, (err, api) => {
     if (err) return console.error(err);
 
+    api.setOptions({listenEvents: true});
+
     // Check for updates
     updateCheck();
 
@@ -100,11 +108,11 @@ function initializeBot() {
         return;
       }
 
-      const userExists = await getUserInfo(event.senderID);
+      const userExists = await getUserInfoFromDB(event.senderID);
 
       if (!userExists) {
         // Use the addUserToDB command to add the user to the database
-        addUserToDB(event.senderID);
+        addUserToDB(api, event.senderID);
       }
 
       const box = {

@@ -3,7 +3,7 @@
 const userDataController = require("./userDataController");
 
 module.exports = {
-  getUserInfo: userDataController.getUserInfo,
+  getUserInfoFromDB: userDataController.getUserInfoFromDB,
   addUserToDB: userDataController.addUserToDB,
   listUsers: userDataController.listUsers,
   // Add other exports as needed...
