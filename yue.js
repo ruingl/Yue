@@ -5,6 +5,7 @@ const axios = require("axios");
 const express = require("express");
 const chalk = require("chalk");
 const gradient = require("gradient-string");
+const { getWeb } = require('./bot/website/app');
 const {
   addUserToDB,
   listUsers,
@@ -87,16 +88,17 @@ function updateCheck() {
     });
 }
 
-app.get("/", (req, res) => {
-  res.send("Website in construction 🏗️");
-});
+getWeb();
 
 // Assuming this is where you create the API instance
 function initializeBot() {
   login({ appState: loadAppState() }, (err, api) => {
     if (err) return console.error(err);
 
-    api.setOptions({ listenEvents: true });
+    api.setOptions({ 
+      listenEvents: true,
+      logLevel: "silent"
+    });
 
     // Check for updates
     updateCheck();
