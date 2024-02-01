@@ -5,11 +5,13 @@ Credits to Rui, Liane
 ## Table of Contents
 
 - [Commands](#commands)
+
   - [ai](#ai)
   - [prefix](#prefix)
   - [help](#help)
 
 - [Database Commands](#database-commands)
+
   - [addUserToDB](#addusertodb)
   - [listUsers](#listusers)
   - [getThreadInfo](#getthreadinfo)

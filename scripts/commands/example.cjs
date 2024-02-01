@@ -3,15 +3,15 @@
 */
 
 module.exports = {
-    config: {
-        name: "example", // Replace with your command name
-        description: "Briefly describes what the command does.", // Replace with your command description
-        usage: ":example", // Replace with example usage
-        author: "AuthorName", // Replace with author name
-        version: "1.0.0", // Replace with command version
-    },
-    run: ({ api, event }) => {
-        // Your command logic using box.send goes here
-        box.send("Hello from the example command!");
-    }
+  config: {
+    name: "example", // Replace with your command name
+    description: "Briefly describes what the command does.", // Replace with your command description
+    usage: ":example", // Replace with example usage
+    author: "AuthorName", // Replace with author name
+    version: "1.0.0", // Replace with command version
+  },
+  run: ({ api, event }) => {
+    // Your command logic using box.send goes here
+    box.send("Hello from the example command!");
+  },
 };

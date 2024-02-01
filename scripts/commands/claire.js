@@ -17,13 +17,14 @@ module.exports = {
     }
 
     try {
-      const response = await axios.get(`https://lianeapi.onrender.com/ask/claire?query=${question}`);
+      const apiKey = 'j86bwkwo-8hako-12C';
+      const response = await axios.get(`https://lianeapi.onrender.com/@LianeAPI_Reworks/api/claire?key=${apiKey}&query=${encodeURIComponent(question)}`);
       const message = response.data.message;
 
       box.reply(message, event.threadID, event.messageID);
     } catch (error) {
       console.error('Error asking Claire:', error.message);
-      box.reply('An error occurred while asking Sumi.');
+      box.reply('An error occurred while asking Claire.');
     }
   },
 };
