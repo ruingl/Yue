@@ -5,17 +5,7 @@ const axios = require("axios");
 const express = require("express");
 const chalk = require("chalk");
 const gradient = require("gradient-string");
-const { getWeb } = require('./bot/website/app');
-const {
-  addUserToDB,
-  listUsers,
-  getThreadInfoFromDB,
-  getUserInfoFromDB,
-  addThreadToDB,
-} = require("./database/commands/index");
-
-const loadPlugins = require("./bot/loadPlugins");
-const startPlugins = require("./bot/startPlugins");
+const { addUserToDB, getThreadInfoFromDB, getUserInfoFromDB, addThreadToDB } = require("./database/commands/index");
 
 const app = express();
 const commandPath = path.join(__dirname, "scripts", "commands");
@@ -27,9 +17,6 @@ const commands = {};
 // Load the version from version.json
 const versionPath = path.join(__dirname, "version.json");
 let version = loadVersion();
-
-loadPlugins();
-startPlugins();
 
 function loadCommands() {
   const commandFiles = fs
@@ -87,8 +74,6 @@ function updateCheck() {
       console.error("Error checking for updates:", error);
     });
 }
-
-getWeb();
 
 // Assuming this is where you create the API instance
 function initializeBot() {
@@ -174,7 +159,66 @@ function initializeBot() {
   });
 }
 
-// ... (rest of your code)
+app.get("/", (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Website in Construction 🏗️</title>
+      <!-- Include Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f0f0f0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          margin: 0;
+        }
+
+        .construction-container {
+          text-align: center;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .construction-icon {
+          font-size: 40px;
+          margin-bottom: 20px;
+        }
+
+        .construction-text {
+          font-size: 18px;
+          color: #555;
+        }
+
+        .footer {
+          margin-top: 20px;
+          font-size: 12px;
+          color: #777;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="construction-container">
+        <div class="construction-icon">🏗️</div>
+        <div class="construction-text">Website in Construction</div>
+        <div class="footer">© Copyright 2024 ruingl.</div>
+      </div>
+
+      <!-- Include Bootstrap JS (optional, for Bootstrap features) -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>
+  `);
+});
 
 app.listen(PORT, () => {
   console.log(gradient.retro(`⟩ yuev1 - (${version}) 🙀`));
