@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const login = require("fca-unofficial");
+const login = require("fb-chat-api-temp");
 const axios = require("axios");
 const express = require("express");
 const chalk = require("chalk");

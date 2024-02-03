@@ -8,6 +8,7 @@ const {
 const {
   getThreadInfoFromDB,
   addThreadToDB,
+  listThreads,
 } = require("../controller/threadsData");
 
 module.exports = {
@@ -16,5 +17,6 @@ module.exports = {
   getThreadInfoFromDB,
   getUserInfoFromDB,
   addThreadToDB,
+  listThreads,
   // Add other exports as needed...
 };

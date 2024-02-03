@@ -36,10 +36,28 @@ const addThreadToDB = async (api, threadID) => {
   }
 };
 
-// Other controller functions go here...
+const listThreads = async () => {
+  try {
+    const threads = await ThreadModel.findAll();
+
+    if (threads.length > 0) {
+      console.log(chalk.green("[ DATABASE ] : List of Threads:"));
+      threads.forEach((thread) => {
+        console.log(`- Thread ID: ${thread.threadID}, Name: ${thread.threadName}`);
+      });
+    } else {
+      console.log(chalk.yellow("[ DATABASE ] : No threads found in the database."));
+    }
+  } catch (error) {
+    console.error("Error listing threads from the database:", error);
+  }
+};
+
+// Placeholder for additional controller functions...
 
 module.exports = {
   getThreadInfoFromDB,
   addThreadToDB,
+  listThreads,
   // Add other exports as needed...
 };
