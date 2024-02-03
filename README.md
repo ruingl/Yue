@@ -1,5 +1,8 @@
 # Yue
 
+[![Made with Love](https://img.shields.io/badge/Made%20with-%E2%99%A5%EF%B8%8F-red)](https://github.com/ruihq/Yue)
+[![GitHub license](https://img.shields.io/badge/License-Rui%20Custom-blue)](LICENSE.md)
+
 Yue is a chatbot engine for Messenger, powered by Node.js and integrated with various APIs for enhanced functionality.
 
 ## Features
@@ -9,37 +12,36 @@ Yue is a chatbot engine for Messenger, powered by Node.js and integrated with va
 
 ## Getting Started
 
-To get started with Yue, follow these steps:
+To embark on your Yue journey, follow these steps:
 
-1. Clone the repository:
+1. **Clone the repository:**
 
    ```bash
    git clone https://github.com/ruihq/Yue.git
    ```
 
-2. Change dir to Yue
-
+2. **Navigate to the Yue directory:**
+   
    ```bash
    cd Yue
    ```
 
-3. Run the bot:
+3. **Run the bot:**
+
    ```bash
    npm run start
    ```
 
-## Documentation:
+## Documentation
 
-You can visit the documentation <a href="DOCS.md">here.</a>
+Dive into the [Documentation](DOCS.md) for detailed insights.
 
-## Credits
+## Credits & Acknowledgments
 
-This project utilizes the following APIs:
+This project thrives on the brilliance of various APIs and the passion of their creators:
 
-- [fca-unofficial](https://github.com/VangBanLaNhat/fca-unofficial) - Facebook Chatting API for Facebook Messenger.
-- [herc.ai](https://github.com/Bes-js/herc.ai) - GPT3 API for AI command
-
-A special thanks to the creators and contributors of these APIs for their valuable contributions to this project.
+- [![fca-unofficial](https://img.shields.io/badge/Facebook%20Chatting%20API-fca--unofficial-success)](https://github.com/VangBanLaNhat/fca-unofficial) - Empowering Facebook Messenger interactions.
+- [![herc.ai](https://img.shields.io/badge/GPT3%20API-herc.ai-brightgreen)](https://github.com/Bes-js/herc.ai) - Infusing AI magic into commands.
 
 ## License
 
