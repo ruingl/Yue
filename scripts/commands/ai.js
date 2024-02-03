@@ -1,41 +1,41 @@
-const axios = require("axios");
+const axios = require('axios');
 
 module.exports = {
   config: {
-    name: "ai",
-    description: "Interact with an AI to get responses to your questions.",
-    usage: ":ai <question>",
-    author: "Rui",
+    name: 'ai',
+    description: 'Generate AI-based responses using GPT.',
+    usage: ':ai <query>',
+    author: 'Rui',
   },
+  run: async ({ api, event, args }) => {
+    const input = args.join(' ');
 
-  run: async (context) => {
-    const { api, event } = context;
-    const args = event.body.slice(":ai".length).trim(); // Extract the arguments after ":ai"
+    if (!input) {
+      api.sendMessage('No query detected. Correct usage is `:ai <query>`.', event.threadID, event.messageID);
+      return;
+    }
 
-    // Check if there are any arguments
-    if (args) {
-      try {
-        const response = await axios.get(
-          `https://hercai.onrender.com/v3/hercai?question=${encodeURIComponent(
-            args,
-          )}`,
-        );
-        const aiResponse = response.data.reply;
-        api.sendMessage(aiResponse, event.threadID, event.messageID);
-      } catch (error) {
-        console.error("Error fetching AI response:", error);
-        api.sendMessage(
-          "Failed to get AI response. Please try again later.",
-          event.threadID,
-          event.messageID,
-        );
-      }
-    } else {
-      api.sendMessage(
-        "Please provide a question after the command. For example: `:ai Hello`",
-        event.threadID,
-        event.messageID,
+    try {
+      const response = await axios.post(
+        'https://api.openai.com/v1/engines/davinci-codex/completions',
+        {
+          prompt: input,
+          max_tokens: 100,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer YOUR_API_KEY',
+          },
+        }
       );
+
+      const aiResponse = response.data.choices[0]?.text.trim() || 'No response from AI.';
+
+      api.sendMessage(aiResponse, event.threadID, event.messageID);
+    } catch (error) {
+      console.error('Error generating AI response:', error.message);
+      api.sendMessage('An error occurred while generating AI response.', event.threadID, event.messageID);
     }
   },
 };
