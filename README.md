@@ -40,7 +40,7 @@ Dive into the [Documentation](DOCS.md) for detailed insights.
 
 This project thrives on the brilliance of various APIs and the passion of their creators:
 
-- [![fca-unofficial](https://img.shields.io/badge/Facebook%20Chatting%20API-fca--unofficial-success)](https://github.com/VangBanLaNhat/fca-unofficial) - Empowering Facebook Messenger interactions.
+- [![fb-chat-api-temp](https://img.shields.io/badge/fb--chat--api--temp-success)](https://github.com/ntkhang03/fb-chat-api-temp) - Empowering Facebook Messenger interactions.
 - [![herc.ai](https://img.shields.io/badge/GPT3%20API-herc.ai-brightgreen)](https://github.com/Bes-js/herc.ai) - Infusing AI magic into commands.
 
 ## License
