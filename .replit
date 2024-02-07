@@ -1,5 +1,15 @@
 run = "npm run start"
 modules = ["nodejs-20:v8-20230920-bd784b9"]
+entrypoint = "index.js"
+hidden = [".config", "package-lock.json"]
 
 [nix]
 channel = "stable-23_11"
+
+[unitTest]
+language = "nodejs"
+
+[deployment]
+run = ["node", "index.js"]
+deploymentTarget = "cloudrun"
+ignorePorts = false

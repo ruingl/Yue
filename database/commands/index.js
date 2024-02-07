@@ -1,22 +1,14 @@
-// commands/index.js
+// database/commands/index.js
 
-const {
-  getUserInfoFromDB,
-  addUserToDB,
-  listUsers,
-} = require("../controller/userData");
-const {
-  getThreadInfoFromDB,
-  addThreadToDB,
-  listThreads,
-} = require("../controller/threadsData");
+const threadsDataController = require("../controller/threadsDataController");
+const userDataController = require("../controller/userDataController");
 
 module.exports = {
-  addUserToDB,
-  listUsers,
-  getThreadInfoFromDB,
-  getUserInfoFromDB,
-  addThreadToDB,
-  listThreads,
+  getThreadInfoFromDB: threadsDataController.getThreadInfoFromDB,
+  addThreadToDB: threadsDataController.addThreadToDB,
+  listThreads: threadsDataController.listThreads,
+  getUserInfoFromDB: userDataController.getUserInfoFromDB,
+  addUserToDB: userDataController.addUserToDB,
+  listUsers: userDataController.listUsers,
   // Add other exports as needed...
 };

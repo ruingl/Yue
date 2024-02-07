@@ -16,14 +16,28 @@ module.exports = {
       const threadsInfo = await threadsList.listThreads();
 
       if (threadsInfo && threadsInfo.length > 0) {
-        const message = threadsInfo.map((thread) => `- Thread ID: ${thread.threadID}, Name: ${thread.threadName}`).join("\n");
-        api.sendMessage(`[ DATABASE ] : List of Threads:\n${message}`, event.threadID);
+        const message = threadsInfo
+          .map(
+            (thread) =>
+              `- Thread ID: ${thread.threadID}, Name: ${thread.threadName}`,
+          )
+          .join("\n");
+        api.sendMessage(
+          `[ DATABASE ] : List of Threads:\n${message}`,
+          event.threadID,
+        );
       } else {
-        api.sendMessage("[ DATABASE ] : No threads found in the database.", event.threadID);
+        api.sendMessage(
+          "[ DATABASE ] : No threads found in the database.",
+          event.threadID,
+        );
       }
     } catch (error) {
       console.error("Error in the threads command:", error);
-      api.sendMessage("[ DATABASE ] : Error listing threads from the database.", event.threadID);
+      api.sendMessage(
+        "[ DATABASE ] : Error listing threads from the database.",
+        event.threadID,
+      );
     }
   },
 };

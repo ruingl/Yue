@@ -21,7 +21,7 @@ To embark on your Yue journey, follow these steps:
    ```
 
 2. **Navigate to the Yue directory:**
-   
+
    ```bash
    cd Yue
    ```

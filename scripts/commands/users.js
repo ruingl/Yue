@@ -16,14 +16,25 @@ module.exports = {
       const usersInfo = await usersList.listUsers(event.threadID);
 
       if (usersInfo && usersInfo.length > 0) {
-        const message = usersInfo.map((user) => `- User ID: ${user.userID}, Name: ${user.userName}`).join("\n");
-        api.sendMessage(`[ DATABASE ] : List of Users in the Thread:\n${message}`, event.threadID);
+        const message = usersInfo
+          .map((user) => `- User ID: ${user.userID}, Name: ${user.userName}`)
+          .join("\n");
+        api.sendMessage(
+          `[ DATABASE ] : List of Users in the Thread:\n${message}`,
+          event.threadID,
+        );
       } else {
-        api.sendMessage("[ DATABASE ] : No users found in the database for this thread.", event.threadID);
+        api.sendMessage(
+          "[ DATABASE ] : No users found in the database for this thread.",
+          event.threadID,
+        );
       }
     } catch (error) {
       console.error("Error in the users command:", error);
-      api.sendMessage("[ DATABASE ] : Error listing users from the database.", event.threadID);
+      api.sendMessage(
+        "[ DATABASE ] : Error listing users from the database.",
+        event.threadID,
+      );
     }
   },
 };

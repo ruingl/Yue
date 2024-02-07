@@ -1,4 +1,4 @@
-const { Hercai } = require('hercai');
+const { Hercai } = require("hercai");
 const herc = new Hercai();
 
 module.exports = {

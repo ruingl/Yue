@@ -1,5 +1,3 @@
-// userDataController.js
-
 const UserModel = require("../models/userModel");
 const chalk = require("chalk");
 
@@ -14,9 +12,6 @@ const getUserInfoFromDB = async (userID) => {
       );
       return user.toJSON(); // Convert to plain object for better handling
     } else {
-      console.log(
-        chalk.yellow(`[ DATABASE ] : User not found in DB: ${userID}`),
-      );
       return null;
     }
   } catch (error) {
@@ -27,25 +22,30 @@ const getUserInfoFromDB = async (userID) => {
 
 const addUserToDB = async (api, userID) => {
   try {
-    const userInfo = await api.getUserInfo([userID]); // Pass userID as an array
-    const user = userInfo[userID];
+    // Use api.getUserInfo to get user information
+    const userInfo = await api.getUserInfo([userID]);
 
-    if (user) {
-      const vanity = user.vanity;
-      const name = user.name;
+    if (userInfo && userInfo[userID]) {
+      const user = userInfo[userID];
 
       await UserModel.create({
-        userID: userID,
-        name: name,
-        vanity: vanity,
+        userID: user.userID,
+        name: user.name,
+        vanity: user.vanity,
         banned: false,
         settings: {},
         data: {},
+        // Additional fields from API call
+        gender: user.gender,
+        isFriend: user.isFriend,
+        isBirthday: user.isBirthday,
+        searchTokens: user.searchTokens,
+        imgavt: user.thumbSrc, // Use thumbSrc from getUserInfo for profile picture
       });
 
       console.log(chalk.green(`[ DATABASE ] : Added new user: ${userID}`));
     } else {
-      console.log(chalk.yellow(`[ DATABASE ] : User not found: ${userID}`));
+      return null;
     }
   } catch (error) {
     console.error("Error adding user to the database:", error);

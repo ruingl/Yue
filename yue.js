@@ -1,3 +1,5 @@
+// yue.js
+
 const fs = require("fs");
 const path = require("path");
 const login = require("fb-chat-api-temp");
@@ -5,7 +7,12 @@ const axios = require("axios");
 const express = require("express");
 const chalk = require("chalk");
 const gradient = require("gradient-string");
-const { addUserToDB, getThreadInfoFromDB, getUserInfoFromDB, addThreadToDB } = require("./database/commands/index");
+const {
+  addUserToDB,
+  getThreadInfoFromDB,
+  getUserInfoFromDB,
+  addThreadToDB,
+} = require("./database/commands/index");
 
 const app = express();
 const commandPath = path.join(__dirname, "scripts", "commands");
@@ -47,48 +54,36 @@ function loadVersion() {
   }
 }
 
-function loadAppState() {
-  try {
-    const appStatePath = path.join(__dirname, "appstate.json");
-    return JSON.parse(fs.readFileSync(appStatePath, "utf8"));
-  } catch (error) {
-    console.error("Error loading app state:", error);
-    return null;
-  }
-}
-
-function updateCheck() {
-  axios
-    .get("https://api.github.com/repos/ruingl/Yue/releases/latest")
-    .then((response) => {
-      const latestVersion = response.data.tag_name;
-      if (latestVersion && latestVersion !== version) {
-        console.log(
-          gradient.retro(
-            `⟩ New version found! Update to ${latestVersion} using npm run update`,
-          ),
-        );
-      }
-    })
-    .catch((error) => {
-      console.error("Error checking for updates:", error);
-    });
-}
-
 // Assuming this is where you create the API instance
 function initializeBot() {
   login({ appState: loadAppState() }, (err, api) => {
     if (err) return console.error(err);
 
-    api.setOptions({ 
+    api.setOptions({
       listenEvents: true,
-      logLevel: "silent"
+      logLevel: "silent",
     });
+
+    // Additional global variables
+    const fbstate = api.getAppState();
+
+    global.client = {};
+    global.data = {};
+    global.account = {
+      cookie: fbstate.map((i) => (i = i.key + "=" + i.value)).join(";"),
+    };
 
     // Check for updates
     updateCheck();
 
     fs.writeFileSync("appstate.json", JSON.stringify(api.getAppState()));
+
+    // Set global variables
+    global.client = {};
+    global.data = {};
+    global.account = {
+      cookie: fbstate.map((i) => (i = i.key + "=" + i.value)).join(";"),
+    };
 
     api.listen(async (err, event) => {
       if (err) {
@@ -158,6 +153,37 @@ function initializeBot() {
     });
   });
 }
+
+function loadAppState() {
+  try {
+    const appStatePath = path.join(__dirname, "appstate.json");
+    return JSON.parse(fs.readFileSync(appStatePath, "utf8"));
+  } catch (error) {
+    console.error("Error loading app state:", error);
+    return null;
+  }
+}
+
+function updateCheck() {
+  axios
+    .get("https://api.github.com/repos/ruingl/Yue/releases/latest")
+    .then((response) => {
+      const latestVersion = response.data.tag_name;
+      if (latestVersion && latestVersion !== version) {
+        console.log(
+          gradient.retro(
+            `⟩ New version found! Update to ${latestVersion} using npm run update`,
+          ),
+        );
+      }
+    })
+    .catch((error) => {
+      console.error("Error checking for updates:", error);
+    });
+}
+
+// Initialize the bot
+initializeBot();
 
 app.get("/", (req, res) => {
   res.send(`
@@ -235,7 +261,4 @@ app.listen(PORT, () => {
 
   // Additional console.log(""); for separation
   console.log("");
-
-  // Initialize the bot
-  initializeBot();
 });
