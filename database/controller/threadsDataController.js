@@ -92,23 +92,21 @@ const listThreads = async () => {
     const threads = await ThreadModel.findAll();
 
     if (threads.length > 0) {
-      console.log(chalk.green("[ DATABASE ] : List of Threads:"));
-      threads.forEach((thread) => {
-        console.log(
-          `- Thread ID: ${thread.threadID}, Name: ${thread.threadInfo.threadName}`,
-        );
-      });
+      const threadList = threads.map((thread) => ({
+        threadID: thread.threadID,
+        threadName: thread.threadInfo.threadName,
+      }));
+
+      return threadList;
     } else {
-      console.log(
-        chalk.yellow("[ DATABASE ] : No threads found in the database."),
-      );
+      console.log(chalk.yellow("[ DATABASE ] : No threads found in the database."));
+      return null;
     }
   } catch (error) {
     console.error("Error listing threads from the database:", error);
+    return null;
   }
 };
-
-// Placeholder for additional controller functions...
 
 module.exports = {
   getThreadInfoFromDB,
