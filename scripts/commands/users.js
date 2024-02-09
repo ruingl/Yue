@@ -13,19 +13,19 @@ module.exports = {
   run: async ({ api, event }) => {
     try {
       // Use the listUsers function to retrieve information about users in the current thread
-      const usersInfo = await usersList.listUsers(event.threadID);
+      const usersInfo = await usersList.listUsers();
 
       if (usersInfo && usersInfo.length > 0) {
         const message = usersInfo
-          .map((user) => `- User ID: ${user.userID}, Name: ${user.userName}`)
+          .map((user) => `- User ID: ${user.userID}, Name: ${user.name}`)
           .join("\n");
         api.sendMessage(
-          `[ DATABASE ] : List of Users in the Thread:\n${message}`,
+          `[ DATABASE ] : List of Users in the Database:\n${message}`,
           event.threadID,
         );
       } else {
         api.sendMessage(
-          "[ DATABASE ] : No users found in the database for this thread.",
+          "[ DATABASE ] : No users found in the database.",
           event.threadID,
         );
       }
