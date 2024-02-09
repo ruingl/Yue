@@ -18,17 +18,22 @@ module.exports = {
       .readdirSync(__dirname)
       .filter((file) => file.endsWith(".js") && file !== "help.js");
 
-    const sendMessage = (message) => api.sendMessage(message, event.threadID, event.messageID);
+    const sendMessage = (message) =>
+      api.sendMessage(message, event.threadID, event.messageID);
 
     switch (true) {
       case args.length === 0:
-        let helpMessage = `📍 | 𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀 (Page 1/${Math.ceil(commandFiles.length / commandsPerPage)}):\n`;
+        let helpMessage = `📍 | 𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀 (Page 1/${Math.ceil(
+          commandFiles.length / commandsPerPage,
+        )}):\n`;
 
         commandFiles.slice(0, commandsPerPage).forEach((file) => {
           const commandName = path.basename(file, ".js");
           const command = require(`./${commandName}`);
           const { name, description } = command.config;
-          helpMessage += `➤ 【 ${name || " No Name"} 】- ${description || "No description"}\n`;
+          helpMessage += `➤ 【 ${name || " No Name"} 】- ${
+            description || "No description"
+          }\n`;
         });
 
         sendMessage(helpMessage);
@@ -49,13 +54,17 @@ module.exports = {
           return;
         }
 
-        let pageMessage = `📍 | 𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀 (Page ${pageNumber}/${Math.ceil(commandFiles.length / commandsPerPage)}):\n`;
+        let pageMessage = `📍 | 𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀 (Page ${pageNumber}/${Math.ceil(
+          commandFiles.length / commandsPerPage,
+        )}):\n`;
 
         commandFiles.slice(startIndex, endIndex).forEach((file) => {
           const commandName = path.basename(file, ".js");
           const command = require(`./${commandName}`);
           const { name, description } = command.config;
-          pageMessage += `➤ 【 ${name || " No Name"} 】- ${description || "No description"}\n`;
+          pageMessage += `➤ 【 ${name || " No Name"} 】- ${
+            description || "No description"
+          }\n`;
         });
 
         sendMessage(pageMessage);
@@ -63,7 +72,9 @@ module.exports = {
 
       default:
         const commandName = args.join(" ").toLowerCase();
-        const commandFile = commandFiles.find((file) => path.basename(file, ".js").toLowerCase() === commandName);
+        const commandFile = commandFiles.find(
+          (file) => path.basename(file, ".js").toLowerCase() === commandName,
+        );
 
         if (commandFile) {
           const command = require(`./${path.basename(commandFile, ".js")}`);
