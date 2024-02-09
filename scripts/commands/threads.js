@@ -1,5 +1,4 @@
-// Import the threadsList module
-const threadsList = require("../../database/commands/index");
+const { listThreads } = require("../../database/commands/index");
 
 module.exports = {
   config: {
@@ -12,15 +11,12 @@ module.exports = {
   },
   run: async ({ api, event }) => {
     try {
-      // Use the listThreads function to retrieve information about threads
-      const threadsInfo = await threadsList.listThreads();
+      // Use the listThreads function to retrieve information about threads in the database
+      const threadsInfo = await listThreads();
 
       if (threadsInfo && threadsInfo.length > 0) {
         const message = threadsInfo
-          .map(
-            (thread) =>
-              `- Thread ID: ${thread.threadID}, Name: ${thread.threadName}`,
-          )
+          .map((thread) => `- Thread ID: ${thread.threadID}, Name: ${thread.threadName}`)
           .join("\n");
         api.sendMessage(
           `[ DATABASE ] : List of Threads:\n${message}`,
