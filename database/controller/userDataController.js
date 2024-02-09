@@ -55,18 +55,16 @@ const addUserToDB = async (api, userID) => {
 const listUsers = async () => {
   try {
     const users = await UserModel.findAll();
-    console.log("[ DATABASE ] : List of users:");
-    users.forEach((user) => {
-      console.log(
-        `User ID: ${user.userID}, Name: ${user.name}, Vanity: ${user.vanity}`,
-      );
-    });
+    return users.map((user) => ({
+      userID: user.userID,
+      name: user.name,
+      vanity: user.vanity,
+    }));
   } catch (error) {
     console.error("Error listing users:", error);
+    return null;
   }
 };
-
-// Other controller functions go here...
 
 module.exports = {
   getUserInfoFromDB,
