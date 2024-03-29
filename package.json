@@ -22,7 +22,7 @@
     "node-fetch": "^3.3.2",
     "pastebin-js": "^1.0.6",
     "request": "^2.88.2",
-    "sequelize": "^6.36.0",
+    "sequelize": "^6.37.2",
     "sqlite3": "^5.1.7"
   },
   "description": "Messenger chatbot"
