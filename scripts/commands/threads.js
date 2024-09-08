@@ -16,7 +16,10 @@ module.exports = {
 
       if (threadsInfo && threadsInfo.length > 0) {
         const message = threadsInfo
-          .map((thread) => `- Thread ID: ${thread.threadID}, Name: ${thread.threadName}`)
+          .map(
+            (thread) =>
+              `- Thread ID: ${thread.threadID}, Name: ${thread.threadName}`,
+          )
           .join("\n");
         api.sendMessage(
           `[ DATABASE ] : List of Threads:\n${message}`,

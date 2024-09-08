@@ -4,26 +4,25 @@
   "main": "yue.js",
   "scripts": {
     "start": "node yue.js",
-    "format": "prettier --write .",
-    "update": "node update.js"
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "Rui and Liane",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@types/node": "^20.12.11",
-    "axios": "^1.7.7",
+    "bluebird": "^2.11.0",
     "chalk": "4.1.2",
-    "express": "^4.19.2",
-    "express-handlebars": "^7.1.2",
-    "fb-chat-api-temp": "github:ntkhang03/fb-chat-api-temp",
+    "cheerio": "^0.22.0",
+    "fs-extra": "^11.2.0",
     "gradient-string": "2.0.2",
-    "hercai": "^12.2.0",
-    "node-fetch": "^3.3.2",
-    "pastebin-js": "^1.0.6",
-    "request": "^2.88.2",
+    "https-proxy-agent": "^4.0.0",
+    "mqtt": "^3.0.0",
+    "npmlog": "^1.2.0",
+    "request": "^2.53.0",
     "sequelize": "^6.37.3",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "websocket-stream": "^5.5.0"
   },
   "description": "Messenger chatbot"
 }

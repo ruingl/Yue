@@ -1,0 +1,5 @@
+{
+  "useDB": true,
+  "PREFIX": "/",
+  "ADMINS": []
+}

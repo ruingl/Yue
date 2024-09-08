@@ -10,7 +10,9 @@ module.exports = {
     role: 0, // Adjusted to role 0
   },
   run: ({ api, event, box }) => {
-    const targetID = event.messageReply ? event.messageReply.senderID : event.senderID;
+    const targetID = event.messageReply
+      ? event.messageReply.senderID
+      : event.senderID;
     box.reply(targetID);
   },
 };
