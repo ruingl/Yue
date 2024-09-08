@@ -18,7 +18,7 @@
     "express-handlebars": "^7.1.2",
     "fb-chat-api-temp": "github:ntkhang03/fb-chat-api-temp",
     "gradient-string": "2.0.2",
-    "hercai": "^12.1.1",
+    "hercai": "^12.2.0",
     "node-fetch": "^3.3.2",
     "pastebin-js": "^1.0.6",
     "request": "^2.88.2",
