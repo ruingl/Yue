@@ -1,3 +1,5 @@
+###### Something big is coming... — @ruingl 2026
+
 # Yue
 
 [![Made with Love](https://img.shields.io/badge/Made%20with-%E2%99%A5%EF%B8%8F-red)](https://github.com/ruihq/Yue)
